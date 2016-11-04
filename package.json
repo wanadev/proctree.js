@@ -1,0 +1,23 @@
+{
+  "name": "proctree.js",
+  "version": "1.0.0",
+  "description": "Procedural tree creation library ",
+  "main": "proctree.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/wanadev/proctree.js.git"
+  },
+  "keywords": [
+    "procedural",
+    "tree"
+  ],
+  "author": "Paul Brunt",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/wanadev/proctree.js/issues"
+  },
+  "homepage": "https://github.com/wanadev/proctree.js#readme"
+}
