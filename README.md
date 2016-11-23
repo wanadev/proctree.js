@@ -2,10 +2,10 @@ proctree.js
 ===========
 
 Procedural tree creation library
-    
+
 ### Usage ###
-	
-Mesh creation, [GLGE](https://github.com/supereggbert/GLGE) example:
+
+Mesh creation, [BabylonJS](http://babylonjs.com/) example:
 ```html
 <script>
 	var myTree = new Tree({
@@ -32,18 +32,20 @@ Mesh creation, [GLGE](https://github.com/supereggbert/GLGE) example:
 		"twistRate": 3.02,
 		"trunkLength": 2.4
 	});
-	var treeMesh = new GLGE.Mesh({
-		Positions: Tree.flattenArray(myTree.verts),
-		Normals: Tree.flattenArray(myTree.normals),
-		UV: Tree.flattenArray(myTree.UV),
-		Faces: Tree.flattenArray(myTree.Faces),
-	});
 
-	var twigMesh = new GLGE.Mesh({
-		Positions: Tree.flattenArray(myTree.vertsTwig),
-		Normals: Tree.flattenArray(myTree.normalsTwig),
-		UV: Tree.flattenArray(myTree.uvsTwig),
-		Faces: Tree.flattenArray(myTree.facesTwig),
-	});
+	var treeMesh = new BABYLON.Mesh("tree", scene);
+	treeMesh.setVerticesData(BABYLON.VertexBuffer.PositionKind, Tree.flattenArray(myTree.verts));
+	treeMesh.setVerticesData(BABYLON.VertexBuffer.NormalKind, Tree.flattenArray(myTree.normals));
+	treeMesh.setVerticesData(BABYLON.VertexBuffer.UVKind, Tree.flattenArray(myTree.UV));
+	treeMesh.setIndices(Tree.flattenArray(myTree.faces).reverse());
+
+	var twigMesh = [];
+	for (var i = 0; i < myTree.vertsTwig.length; i++) {
+		twigMesh[i] = new BABYLON.Mesh("leaves", scene);
+		twigMesh[i].setVerticesData(BABYLON.VertexBuffer.PositionKind, Tree.flattenArray(myTree.vertsTwig[i]));
+		twigMesh[i].setVerticesData(BABYLON.VertexBuffer.NormalKind, Tree.flattenArray(myTree.normalsTwig[i]));
+		twigMesh[i].setVerticesData(BABYLON.VertexBuffer.UVKind, Tree.flattenArray(myTree.uvsTwig[i]));
+		twigMesh[i].setIndices(Tree.flattenArray(myTree.facesTwig[i]).reverse());
+	}
 </script>
 ```

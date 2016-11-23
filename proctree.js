@@ -208,10 +208,14 @@ Tree.prototype.doFaces = function(branch) {
 
 Tree.prototype.createTwigs = function(branch) {
     if (!branch) branch = this.root;
-    var vertsTwig = this.vertsTwig;
-    var normalsTwig = this.normalsTwig;
-    var facesTwig = this.facesTwig;
-    var uvsTwig = this.uvsTwig;
+    this.vertsTwig[this.vertsTwig.length] = [];
+    this.normalsTwig[this.normalsTwig.length] = [];
+    this.facesTwig[this.facesTwig.length] = [];
+    this.uvsTwig[this.uvsTwig.length] = [];
+    var vertsTwig = this.vertsTwig[this.vertsTwig.length-1];
+    var normalsTwig = this.normalsTwig[this.normalsTwig.length-1];
+    var facesTwig = this.facesTwig[this.facesTwig.length-1];
+    var uvsTwig = this.uvsTwig[this.uvsTwig.length-1];
     if (!branch.child0) {
         var tangent = normalize(cross(subVec(branch.parent.child0.head, branch.parent.head), subVec(branch.parent.child1.head, branch.parent.head)));
         var binormal = normalize(subVec(branch.head, branch.parent.head));
